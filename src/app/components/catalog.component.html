@@ -1,0 +1,36 @@
+<h3>BESTSELLERS</h3>
+
+<div class="container">
+  <div class="row">
+    <div class="col-sm-6 col-md-4" *ngFor="let product of products">
+      <div class="thumbnail">
+        <img [src]="product.image" alt="...">
+        <div class="caption">
+          <h3>{{product.title}}</h3>
+          <p>{{product.description}}</p>
+          <p><a href="#" class="btn btn-danger" role="button" (click)="delete(product); $event.stopPropagation()">Delete</a></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <h2>Ajouter un produit</h2>
+
+  <div>
+    <label>Title :</label> <input type="text" class="form-control" #productTitle />
+    <label>Description :</label> <input type="text" class="form-control" #productDescription />
+    <label for="category">Images</label>
+    <select class="form-control" id="images" required #productImages>
+      <option *ngFor="let img of images" [value]="img">{{img}}</option>
+    </select>
+    <label for="category">Category</label>
+    <select class="form-control" id="category" required #productCategory>
+      <option *ngFor="let cat of category" [value]="cat">{{cat}}</option>
+    </select>
+    <button type="button" class="btn btn-success" (click)="add(productTitle.value, productDescription.value, productImages.value, productCategory.value); productTitle.value=''; productDescription.value=''">
+      Add
+    </button>
+  </div>
+</div>
